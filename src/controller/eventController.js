@@ -46,9 +46,11 @@ const createEvent = async function (req, res) {
           .status(404)
           .send({ status: false, msg: 'This Event is not found or deleted.' });
       }
-
-       updateData = await eventModel.findByIdAndUpdate({ _id: id }, updateData, {
+      
+       updateData = await eventModel.findByIdAndUpdate( id ,req.body ,{
         new: true,
+        useFindAndModify:false,
+        runValidators:true
       });
       res.status(200).send({ status: true, msg: updateData });
     } catch (err) {
