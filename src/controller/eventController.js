@@ -5,10 +5,11 @@ const eventModel = require("../model/eventModel")
 const createEvent = async function (req, res) {
     try {
       const eventData = req.body;
-
+    
       if (Object.keys(eventData).length == 0)
         return res.status(400).send({ status: false, msg: 'enter body' });
-  
+
+      
       const createEventData = await eventModel.create(eventData);
   
       res.status(201).send({ status: true, msg: createEventData });
